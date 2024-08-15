@@ -1,0 +1,142 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* White background for body */
+    color: #333;
+}
+
+h1, h2 {
+    color: #0056b3;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#content-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for content section */
+    /* Removed border-radius and box-shadow for borderless look */
+}
+
+#content-section ol {
+    padding-left: 20px;
+}
+
+#content-section li {
+    margin-bottom: 30px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #cfd8dc;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+    object-fit: cover;
+}
+
+#content-section li strong {
+    color: #0056b3;
+}
+
+
+#countdown-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; 
+    border-radius: 0px;
+    box-shadow: 0 0 0px rgba(0, 86, 179, 0.1);
+    text-align: center;
+}
+
+#countdown-section h2 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #0056b3;
+}
+
+#countdown-timer {
+    font-size: 2em;
+    color: #d9534f;
+}
+
+
+#hidden-button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#show-content-button {
+    background-color: #0056b3; 
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#show-content-button:hover {
+    background-color: #003d7a; 
+}
+
+
+#cookie-warning, noscript {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #d9534f;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+#footer {
+    background-color: #f1f1f1; 
+    color: #333; 
+    text-align: center; 
+    padding: 20px 0; 
+    position: relative; 
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px; 
+}
+
+#footer p {
+    margin: 0; 
+}
+
+
+#scroll-button-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#scroll-to-continue {
+    background-color: #0056b3; 
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#scroll-to-continue:hover {
+    background-color: #003d7a; 
+}
