@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link2py - Top 3 Vacation Destinations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <noscript>
+        <div style="color: red;">
+            JavaScript is required to use this website. Please enable JavaScript in your browser settings.
+        </div>
+    </noscript>
+
+    <div id="cookie-warning" style="display: none; color: red;">
+        Cookies are required to use this website. Please enable cookies in your browser settings.
+    </div>
+
+    <h1>Top 3 Recommended Places to Go on Vacation</h1>
+
+    <br>>
+    <div id="scroll-button-container">
+        <button id="scroll-to-continue">Scroll to Continue</button>
+    </div>
+
+    <br>
+    <div id="content-section">
+        <ol>
+            <li>
+                <img src="Bali.PNG" alt="Bali, Indonesia" class="image-placeholder">
+                <strong>Bali, Indonesia</strong><br> - Bali is a true tropical paradise known for its breathtaking beaches, vibrant culture, and lush landscapes. Visitors can explore ancient temples, enjoy the rich Balinese arts and crafts, or simply relax on the white sandy beaches. The island is also famous for its surf spots, scenic rice terraces, and world-class resorts. Whether you're seeking adventure or tranquility, Bali offers an unforgettable experience.
+            </li><br>
+            <br><br>
+            <li>
+                <img src="Paris.png" alt="Paris, France" class="image-placeholder">
+                <strong>Paris, France</strong><br> - Paris, the capital city of France, is a global center for art, fashion, and culture. Known as the "City of Love," Paris is home to iconic landmarks such as the Eiffel Tower, the Louvre Museum, and Notre-Dame Cathedral. Stroll along the charming streets of Montmartre, dine in world-renowned restaurants, or cruise along the Seine River. Paris's blend of historical significance and modern allure makes it a must-visit destination.
+            </li><br><br><br>
+            
+            <li>
+                <img src="Maui.PNG" alt="Maui, Hawaii" class="image-placeholder">
+                <strong>Maui, Hawaii</strong><br> - Maui, often referred to as the "Valley Isle," is celebrated for its diverse landscapes, from volcanic craters to lush rainforests. Visitors can drive the famous Road to Hana, hike in Haleakalā National Park, or relax on the pristine beaches of Ka'anapali and Wailea. Maui's unique blend of adventure and relaxation, coupled with its rich Hawaiian culture, makes it an ideal destination for nature lovers and beachgoers alike.
+            </li><br><br><br>
+        </ol>
+    </div>
+
+    
+    <div id="countdown-section">
+        <h2>Please Wait<br> <span id="countdown-timer">15</span></h2>
+    </div>
+
+    
+    <div id="hidden-button-container" style="display: none; text-align: center; margin: 20px 0;">
+        <button id="show-content-button">Click Here</button>
+    </div>
+
+    <footer id="footer">
+        <p>&copy; 2024 Link2py. All rights reserved.</p>
+    </footer>
+
+    <script>
+        
+        document.cookie = "testcookie=1";
+        if (document.cookie.indexOf("testcookie") === -1) {
+            document.getElementById('cookie-warning').style.display = 'block';
+        } else {
+            document.getElementById('cookie-warning').style.display = 'none';
+        }
+
+        
+        document.getElementById('scroll-to-continue').addEventListener('click', function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        
+        let countdownTimer = 15;
+        const countdownElement = document.getElementById('countdown-timer');
+        const hiddenButtonContainer = document.getElementById('hidden-button-container');
+
+        function updateCountdown() {
+            countdownElement.textContent = countdownTimer;
+            countdownTimer--;
+            if (countdownTimer < 0) {
+                clearInterval(countdownInterval);
+                hiddenButtonContainer.style.display = 'block';
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
