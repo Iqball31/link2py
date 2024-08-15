@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Website</title>
+    <style>body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    .container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center content vertically within the container */
+    }
+    
+    .thumbnails-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+        flex: 1; /* Allows thumbnails section to take up available space */
+    }
+    
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .thumbnail-wrapper {
+        margin: 10px;
+    }
+    
+    .thumbnail-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+    
+    .thumbnail {
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+        transition: transform 0.3s, border-color 0.3s;
+        pointer-events: none; /* Disable clicks initially */
+    }
+    
+    .thumbnail-link.enabled .thumbnail {
+        pointer-events: auto; /* Enable clicks when countdown is over */
+    }
+    
+    .thumbnail-link:hover .thumbnail {
+        transform: scale(1.05);
+        border-color: #007bff;
+    }
+    
+    .thumbnail-title {
+        margin: 10px 0 0;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .timer-section {
+        text-align: center;
+        padding: 100px;
+    }
+    
+    #countdown-timer {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+    
+    footer p {
+        margin: 0;
+    }
+    </style>>
+</head>
+<body>
+    <div class="container">
+        <section class="thumbnails-section">
+            <div class="content">
+                <div class="thumbnail-wrapper">
+                    <a href="https://example.com/link1" class="thumbnail-link" id="thumbnail1">
+                        <img src="thumbnail1.jpg" alt="Thumbnail 1" class="thumbnail">
+                        <p class="thumbnail-title">Title 1</p>
+                    </a>
+                </div>
+                <div class="thumbnail-wrapper">
+                    <a href="https://example.com/link2" class="thumbnail-link" id="thumbnail2">
+                        <img src="thumbnail2.jpg" alt="Thumbnail 2" class="thumbnail">
+                        <p class="thumbnail-title">Title 2</p>
+                    </a>
+                </div>
+                <div class="thumbnail-wrapper">
+                    <a href="https://example.com/link3" class="thumbnail-link" id="thumbnail3">
+                        <img src="thumbnail3.jpg" alt="Thumbnail 3" class="thumbnail">
+                        <p class="thumbnail-title">Title 3</p>
+                    </a>
+                </div>
+                <div class="thumbnail-wrapper">
+                    <a href="https://example.com/link4" class="thumbnail-link" id="thumbnail4">
+                        <img src="thumbnail4.jpg" alt="Thumbnail 4" class="thumbnail">
+                        <p class="thumbnail-title">Title 4</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <section class="timer-section">
+            <div id="countdown-timer">10</div> <!-- Countdown timer display -->
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Simple Website. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Countdown timer logic
+        let countdown = 10;
+        const countdownElement = document.getElementById('countdown-timer');
+        const thumbnails = document.querySelectorAll('.thumbnail-link');
+
+        function updateCountdown() {
+            countdownElement.textContent = countdown;
+            if (countdown === 0) {
+                clearInterval(timerInterval);
+                // Enable the thumbnails when countdown ends
+                thumbnails.forEach(thumbnail => thumbnail.classList.add('enabled'));
+            }
+            countdown--;
+        }
+
+        // Update countdown every second
+        const timerInterval = setInterval(updateCountdown, 1000);
+
+        // Initial call to display the countdown
+        updateCountdown();
+    </script>
+</body>
+</html>
