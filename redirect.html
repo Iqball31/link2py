@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+        }
+        #countdown-timer {
+            font-size: 2em;
+            color: #333;
+        }
+        #manual-redirect {
+            display: none;
+            margin-top: 20px;
+        }
+        #manual-redirect button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Please Wait, Automatically Redirecting</h1>
+    <p>Redirecting in <span id="countdown-timer">5</span> seconds...</p>
+
+    <div id="manual-redirect">
+        <p>If you are not automatically redirected, <a id="manual-link" href="#"><button>Click Here</button></a></p>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // Get the target URL from the query parameter
+        const targetUrl = getQueryParam('redirectTo');
+        const manualLink = document.getElementById('manual-link');
+
+        // Set the manual link href if a target URL is provided
+        if (targetUrl) {
+            manualLink.href = targetUrl;
+        } else {
+            // Fallback in case the redirectTo parameter is not set
+            manualLink.href = 'default.html';
+        }
+
+        // Countdown logic
+        const countdownTimer = document.getElementById('countdown-timer');
+        let countdownValue = parseInt(countdownTimer.textContent, 10);
+
+        function updateCountdown() {
+            countdownValue -= 1;
+            countdownTimer.textContent = countdownValue;
+
+            if (countdownValue <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = targetUrl; // Auto redirect
+            } else if (countdownValue <= 1) {
+                document.getElementById('manual-redirect').style.display = 'block';
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '184713caf3c72c6c02790192ec3b7729',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.topcreativeformat.com/184713caf3c72c6c02790192ec3b7729/invoke.js"></script>
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '5a28948b22e0424d39c585b6606b2d28',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="//www.topcreativeformat.com/5a28948b22e0424d39c585b6606b2d28/invoke.js"></script>
+    <script type="text/javascript">
+	atOptions = {
+		'key' : '5a28948b22e0424d39c585b6606b2d28',
+		'format' : 'iframe',
+		'height' : 250,
+		'width' : 300,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.topcreativeformat.com/5a28948b22e0424d39c585b6606b2d28/invoke.js"></script>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '184713caf3c72c6c02790192ec3b7729',
+		'format' : 'iframe',
+		'height' : 90,
+		'width' : 728,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.topcreativeformat.com/184713caf3c72c6c02790192ec3b7729/invoke.js"></script>
+</body>
+</html>
