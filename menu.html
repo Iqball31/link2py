@@ -3,156 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link2py</title>
-    <style>body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    
-    .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Center content vertically within the container */
-    }
-    
-    .thumbnails-section {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 20px;
-        flex: 1; /* Allows thumbnails section to take up available space */
-    }
-    
-    .content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-    }
-    
-    .thumbnail-wrapper {
-        margin: 10px;
-    }
-    
-    .thumbnail-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-    
-    .thumbnail {
-        max-width: 200px;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        border: 2px solid #ddd;
-        border-radius: 5px;
-        transition: transform 0.3s, border-color 0.3s;
-        pointer-events: none; /* Disable clicks initially */
-    }
-    
-    .thumbnail-link.enabled .thumbnail {
-        pointer-events: auto; /* Enable clicks when countdown is over */
-    }
-    
-    .thumbnail-link:hover .thumbnail {
-        transform: scale(1.05);
-        border-color: #007bff;
-    }
-    
-    .thumbnail-title {
-        margin: 10px 0 0;
-        font-size: 16px;
-        color: #333;
-    }
-    
-    .timer-section {
-        text-align: center;
-        padding: 100px;
-    }
-    
-    #countdown-timer {
-        font-size: 24px;
-        font-weight: bold;
-    }
-    
-    footer {
-        background-color: #f8f9fa;
-        text-align: center;
-        padding: 10px 0;
-        position: fixed;
-        width: 100%;
-        bottom: 0;
-    }
-    
-    footer p {
-        margin: 0;
-    }
+    <title>Video Sharing Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+        .search-container {
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            margin-top: 10px;
+        }
+        .search-container input[type="text"] {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .search-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-container button:hover {
+            background-color: #555;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+            margin-bottom: 60px;
+            flex: 1;
+        }
+        .video-thumbnail {
+            width: 300px;
+            height: 400px; /* Increased height to fit both image and info */
+            margin: 10px;
+            background-color: #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow: hidden; /* Ensure overflow content is hidden */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .video-thumbnail img {
+            width: 100%;
+            height: 200px; /* Fixed height for image */
+            object-fit: cover; /* Maintain aspect ratio and cover the container */
+        }
+        .video-info {
+            padding: 10px;
+            background-color: #fff; /* Background to ensure text is readable */
+        }
+        .video-title {
+            font-size: 18px;
+            margin: 0;
+        }
+        .video-category {
+            font-size: 14px;
+            color: #666;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pagination button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .pagination button:hover {
+            background-color: #555;
+        }
+        .page-info {
+            font-size: 18px;
+            margin: 10px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .hidden {
+            display: none;
+        }
+        /* No results message */
+        .no-results {
+            display: none;
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-top: 20px;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .video-thumbnail {
+                width: 100%;
+                height: auto; /* Adjust height for smaller screens */
+            }
+            .video-thumbnail img {
+                height: auto; /* Let the image adjust its height */
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <section class="thumbnails-section">
-            <div class="content">
-                <div class="thumbnail-wrapper">
-                    <a href="https://go.paid4link.com/link2py" class="thumbnail-link" id="thumbnail1">
-                        <img src="image.jpeg" alt="image 1" class="thumbnail">
-                        <p class="thumbnail-title"></p>
-                    </a>
-                </div>
-                <div class="thumbnail-wrapper">
-                    <a href="https://go.paid4link.com/JDHU0L" class="thumbnail-link" id="thumbnail2">
-                        <img src="image2.jpeg" alt="image 2" class="thumbnail">
-                        <p class="thumbnail-title"></p>
-                    </a>
-                </div>
-                <div class="thumbnail-wrapper">
-                    <a href="https://go.paid4link.com/vPvi" class="thumbnail-link" id="thumbnail3">
-                        <img src="image3.jpeg" alt="image 3" class="thumbnail">
-                        <p class="thumbnail-title"></p>
-                    </a>
-                </div>
-                <div class="thumbnail-wrapper">
-                    <a href="https://go.paid4link.com/70jM" class="thumbnail-link" id="thumbnail4">
-                        <img src="image4.jpeg" alt="image 4" class="thumbnail">
-                        <p class="thumbnail-title"></p>
-                    </a>
-                </div>
-            </div>
-        </section>
-        <section class="timer-section">Please Wait
-            <div id="countdown-timer">10</div> <!-- Countdown timer display -->
-        </section>
-    </div>
-    <footer>
-        <p>&copy; 2024 Simple Website. All rights reserved.</p>
-    </footer>
-    
-    <script>
-        // Countdown timer logic
-        let countdown = 10;
-        const countdownElement = document.getElementById('countdown-timer');
-        const thumbnails = document.querySelectorAll('.thumbnail-link');
 
-        function updateCountdown() {
-            countdownElement.textContent = countdown;
-            if (countdown === 0) {
-                clearInterval(timerInterval);
-                // Enable the thumbnails when countdown ends
-                thumbnails.forEach(thumbnail => thumbnail.classList.add('enabled'));
+    <header>
+        <h1>BOOSTER.18</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search Videos" aria-label="Search videos">
+        <button id="search-button" aria-label="Search">Search</button>
+    </div>
+
+    <div class="container" id="thumbnail-container">
+        <!-- Updated Thumbnails with URLs -->
+        <div class="video-thumbnail" data-title="Video 1" data-category="Music">
+            <a href="redirect.html?redirectTo=https://go.paid4link.com/link2py" class="thumbnail-link">
+                <img src="image1.jpeg" alt="Video 1">
+                <div class="video-info">
+                    <div class="video-title">Video 1</div>
+                    <div class="video-category">Music</div>
+                </div>
+            </a>
+        </div>
+        <div class="video-thumbnail" data-title="Video 2" data-category="Music">
+            <a href="redirect.html?redirectTo=https://go.paid4link.com/JDHU0L" class="thumbnail-link">
+                <img src="image2.jpeg" alt="Video 1">
+                <div class="video-info">
+                    <div class="video-title">Video 2</div>
+                    <div class="video-category">Music</div>
+                </div>
+            </a>
+        </div>
+        <div class="video-thumbnail" data-title="Video 3" data-category="Music">
+            <a href="redirect.html?redirectTo=https://go.paid4link.com/vPvi" class="thumbnail-link">
+                <img src="image3.jpeg" alt="Video 1">
+                <div class="video-info">
+                    <div class="video-title">Video 3</div>
+                    <div class="video-category">Music</div>
+                </div>
+            </a>
+        </div>
+        <div class="video-thumbnail" data-title="Video 4" data-category="Music">
+            <a href="redirect.html?redirectTo=https://go.paid4link.com/70jM" class="thumbnail-link">
+                <img src="image4.jpeg" alt="Video 1">
+                <div class="video-info">
+                    <div class="video-title">Video 4</div>
+                    <div class="video-category">Music</div>
+                </div>
+            </a>
+        </div>
+        
+    </div>
+
+    <div class="no-results" id="no-results">There's no video match with this keyword</div>
+
+    <div class="pagination">
+        <button id="prev-button" class="hidden" aria-label="Previous page">Prev</button>
+        <button id="next-button" aria-label="Next page">Next</button>
+        <div class="page-info" id="page-info">1/1</div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Video Sharing Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('search-button').addEventListener('click', function() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const thumbnails = document.querySelectorAll('.video-thumbnail');
+            let hasResults = false;
+
+            thumbnails.forEach(thumbnail => {
+                const title = thumbnail.getAttribute('data-title').toLowerCase();
+                const category = thumbnail.getAttribute('data-category').toLowerCase();
+
+                if (title.includes(searchTerm) || category.includes(searchTerm)) {
+                    thumbnail.style.display = 'flex'; // Show thumbnail
+                    hasResults = true;
+                } else {
+                    thumbnail.style.display = 'none'; // Hide thumbnail
+                }
+            });
+
+            const noResultsMessage = document.getElementById('no-results');
+            if (hasResults) {
+                noResultsMessage.style.display = 'none';
+            } else {
+                noResultsMessage.style.display = 'block';
             }
-            countdown--;
+        });
+
+        function updatePagination() {
+            const totalPages = 1; // As there is only one page with static content
+            document.getElementById('page-info').textContent = `1/${totalPages}`;
+            document.getElementById('prev-button').classList.add('hidden');
+            document.getElementById('next-button').classList.add('hidden');
         }
 
-        // Update countdown every second
-        const timerInterval = setInterval(updateCountdown, 1000);
-
-        // Initial call to display the countdown
-        updateCountdown();
+        updatePagination();
     </script>
+
 </body>
 </html>
